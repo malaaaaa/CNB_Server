@@ -5,26 +5,12 @@
 package service;
 
 import com.mala.cnb.entities.TImage;
-import com.mala.cnb.entities.TImage_;
-import com.mala.cnb.entities.VPhotoalbum;
-import com.sun.crypto.provider.TlsKeyMaterialGenerator;
-import com.sun.jndi.url.iiop.iiopURLContext;
-import com.sun.org.apache.xpath.internal.axes.SelfIteratorNoPredicate;
-import java.awt.Image;
-import java.awt.Toolkit;
 import java.io.ByteArrayInputStream;
 import java.io.InputStream;
-import java.util.LinkedList;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import javax.persistence.TypedQuery;
-import javax.persistence.criteria.CriteriaBuilder;
-import javax.persistence.criteria.CriteriaQuery;
-import javax.persistence.criteria.From;
-import javax.persistence.criteria.Root;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
