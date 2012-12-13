@@ -24,6 +24,7 @@ public class ApplicationConfig extends Application {
     private Set<Class<?>> getRestResourceClasses() {
         Set<Class<?>> resources = new java.util.HashSet<Class<?>>();
         resources.add(service.VArticlebodyFacadeREST.class);
+        resources.add(service.VVideoFacadeREST.class);
         resources.add(service.VArticleFacadeREST.class);
         resources.add(service.VPhotoalbumFacadeREST.class);
         resources.add(service.TImageFacadeREST.class);
