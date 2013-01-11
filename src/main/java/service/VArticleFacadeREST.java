@@ -70,7 +70,7 @@ public class VArticleFacadeREST extends AbstractFacade<VArticle> {
     public List<VArticle> findAfterUpdateTime(@PathParam("fullUpdateTime") Timestamp fullUpdateTime) {
         Query query = em.createNamedQuery("VArticle.findAfterFullUpdateTime").setParameter("fullUpdateTime", fullUpdateTime);  
         //设置单次查询返回行数
-        query.setMaxResults(4);
+        query.setMaxResults(10);
         List<VArticle> listExpected = query.getResultList();
         //查询不到数据，返回特殊标示
         if (query.getResultList().isEmpty()) {

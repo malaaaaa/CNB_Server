@@ -5,10 +5,12 @@
 package service;
 
 import com.mala.cnb.entities.VVideo;
+import java.sql.Timestamp;
 import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.GET;
@@ -59,7 +61,26 @@ public class VVideoFacadeREST extends AbstractFacade<VVideo> {
     public VVideo find(@PathParam("id") String id) {
         return super.find(id);
     }
-
+    
+    @GET
+    @Path("afterUpdatetime/{fullUpdateTime}")
+    @Produces({ "application/json"})
+    //时间参数格式为2012-12-05 00:00:00.000,如果参数类型为java.sql.date, 格式为 0000-00-00
+    public List<VVideo> findAfterUpdateTime(@PathParam("fullUpdateTime") Timestamp fullUpdateTime) {
+        Query query = em.createNamedQuery("VVideo.findAfterFullUpdateTime").setParameter("fullUpdateTime", fullUpdateTime);  
+        //设置单次查询返回行数
+        query.setMaxResults(10);
+        List<VVideo> listExpected = query.getResultList();
+        //查询不到数据，返回特殊标示
+        if (query.getResultList().isEmpty()) {
+            VVideo video =new VVideo();
+            video.setTitle("NODATAFOUND");
+            listExpected.add(video);
+            System.out.println("NODATAFOUND");
+        }
+        return listExpected;
+    }
+    
     @GET
     @Override
     @Produces({"application/json"})
