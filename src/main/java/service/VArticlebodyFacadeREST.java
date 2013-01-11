@@ -95,7 +95,7 @@ public class VArticlebodyFacadeREST extends AbstractFacade<VArticlebody> {
     public List<VArticlebody> findByID(@PathParam("id") Integer id) {
 //        Query query = em.createQuery("SELECT t FROM VArticlebody t where t.articleID=:arg1");
 //        query.setParameter("arg1", id);
-        Query query = em.createNamedQuery("VArticlebody.findByArticleID").setParameter("articleID", id);                 
+        Query query = em.createNamedQuery("VArticlebody.findByArticleID").setParameter("articleID", id);  
         List<VArticlebody> listExpected = query.getResultList();
 
         return listExpected;

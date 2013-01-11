@@ -34,6 +34,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "VVideo.findByUpdateTime", query = "SELECT v FROM VVideo v WHERE v.updateTime = :updateTime"),
     @NamedQuery(name = "VVideo.findByUrl", query = "SELECT v FROM VVideo v WHERE v.url = :url")})
 public class VVideo implements Serializable {
+    @Size(max = 79)
+    @Column(name = "ShareURL")
+    private String shareURL;
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
     @NotNull
@@ -94,6 +97,14 @@ public class VVideo implements Serializable {
 
     public void setUrl(String url) {
         this.url = url;
+    }
+
+    public String getShareURL() {
+        return shareURL;
+    }
+
+    public void setShareURL(String shareURL) {
+        this.shareURL = shareURL;
     }
     
 }

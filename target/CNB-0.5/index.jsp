@@ -8,6 +8,7 @@
         <title>JSP Page</title>
     </head>
     <body>
-        <h1>Hello World!</h1>
+        <h1>CNB GlassFish Server Is Running! </h1>
+        <h1>    走你! @(・●・)@ </h1>
     </body>
 </html>

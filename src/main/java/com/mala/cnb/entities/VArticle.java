@@ -5,6 +5,7 @@
 package com.mala.cnb.entities;
 
 import java.io.Serializable;
+import java.util.Date;
 import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -12,6 +13,8 @@ import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -29,7 +32,9 @@ import javax.xml.bind.annotation.XmlRootElement;
     @NamedQuery(name = "VArticle.findBySubTitle", query = "SELECT v FROM VArticle v WHERE v.subTitle = :subTitle"),
     @NamedQuery(name = "VArticle.findByThumbImagePath", query = "SELECT v FROM VArticle v WHERE v.thumbImagePath = :thumbImagePath"),
     @NamedQuery(name = "VArticle.findByTitle", query = "SELECT v FROM VArticle v WHERE v.title = :title"),
-    @NamedQuery(name = "VArticle.findByUpdateTime", query = "SELECT v FROM VArticle v WHERE v.updateTime = :updateTime")})
+    @NamedQuery(name = "VArticle.findByUpdateTime", query = "SELECT v FROM VArticle v WHERE v.updateTime = :updateTime"),
+    @NamedQuery(name = "VArticle.findAfterFullUpdateTime", query = "SELECT v FROM VArticle v WHERE v.fullUpdateTime < :fullUpdateTime"),
+    @NamedQuery(name = "VArticle.findByFullUpdateTime", query = "SELECT v FROM VArticle v WHERE v.fullUpdateTime = :fullUpdateTime")})
 public class VArticle implements Serializable {
     private static final long serialVersionUID = 1L;
     @Basic(optional = false)
@@ -46,9 +51,12 @@ public class VArticle implements Serializable {
     @Size(max = 50)
     @Column(name = "Title")
     private String title;
-    @Size(max = 72)
+    @Size(max = 10)
     @Column(name = "UpdateTime")
     private String updateTime;
+    @Column(name = "FullUpdateTime")
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date fullUpdateTime;
 
     public VArticle() {
     }
@@ -91,6 +99,14 @@ public class VArticle implements Serializable {
 
     public void setUpdateTime(String updateTime) {
         this.updateTime = updateTime;
+    }
+
+    public Date getFullUpdateTime() {
+        return fullUpdateTime;
+    }
+
+    public void setFullUpdateTime(Date fullUpdateTime) {
+        this.fullUpdateTime = fullUpdateTime;
     }
     
 }
